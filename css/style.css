@@ -735,3 +735,95 @@ footer {
   .contacto-grid { grid-template-columns: 1fr; gap: 2rem; }
   footer { grid-template-columns: 1fr; padding: 3rem 1.5rem; gap: 2rem; }
 }
+
+/* ============================================================
+   POLISH FINAL — detalles que marcan la diferencia
+============================================================ */
+
+/* Selección de texto en color acento */
+::selection {
+  background: var(--acento);
+  color: var(--blanco);
+}
+
+/* Scroll suave en toda la página */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Transición suave entre páginas */
+body {
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Línea acento en el borde superior del botón nav al hacer hover */
+.btn-nav {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-nav::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 2px;
+  background: rgba(255,255,255,0.4);
+  transition: width 0.3s ease;
+}
+
+.btn-nav:hover::after { width: 100%; }
+
+/* Cards de servicio: fondo crema cuando hover */
+.servicio-card:hover {
+  background: var(--blanco);
+}
+
+/* Inputs: placeholder más sutil */
+::placeholder {
+  color: var(--gris-borde);
+  font-size: 0.9rem;
+}
+
+/* Stats: número más grande en hover */
+.stat strong {
+  transition: transform 0.3s ease;
+  display: block;
+}
+
+.stat:hover strong {
+  transform: scale(1.05);
+}
+
+/* Miembro card: foto con overlay sutil al hover */
+.miembro-foto {
+  position: relative;
+  overflow: hidden;
+}
+
+.miembro-foto::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--acento);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.miembro-foto:hover::after {
+  opacity: 0.1;
+}
+
+/* Footer: separador superior con acento */
+footer {
+  border-top: 3px solid var(--acento);
+}
+
+/* Página activa en nav más visible */
+.nav-links a.activo {
+  font-weight: 500;
+}
