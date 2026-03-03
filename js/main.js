@@ -1,19 +1,3 @@
-// ============================================================
-// MAIN.JS — FisioVida
-// ============================================================
-// 1. Navbar: sombra al hacer scroll
-// 2. Animaciones reveal al hacer scroll
-// 3. Formulario: validación y feedback
-// ============================================================
-
-
-// ============================================================
-// 1. NAVBAR — sombra al hacer scroll
-//
-// En esta web la nav es blanca, así que en lugar de cambiar
-// el color de fondo, añadimos una sombra sutil cuando el
-// usuario baja. Esto da sensación de profundidad.
-// ============================================================
 const navbar = document.querySelector('nav');
 
 window.addEventListener('scroll', () => {
@@ -25,14 +9,6 @@ window.addEventListener('scroll', () => {
 });
 
 
-// ============================================================
-// 2. ANIMACIONES REVEAL AL HACER SCROLL
-//
-// Igual que en el portfolio: IntersectionObserver vigila
-// qué elementos son visibles y les añade la clase "visible".
-// La diferencia es que aquí añadimos la clase reveal por JS
-// a los elementos que queremos animar.
-// ============================================================
 const elementosAnimados = document.querySelectorAll(
   '.servicio-card, .stat, .miembro-card, .servicio-detalle, ' +
   '.dato, .seccion-titulo, #cta-reserva h2, #cta-reserva p, ' +
@@ -56,18 +32,6 @@ const observer = new IntersectionObserver(
 elementosAnimados.forEach(el => observer.observe(el));
 
 
-// ============================================================
-// 3. FORMULARIO — validación y feedback visual
-//
-// Cuando el usuario envía el formulario:
-//   - Comprobamos que todos los campos requeridos están rellenos
-//   - Si falta algo, marcamos el campo en rojo
-//   - Si todo está bien, mostramos un mensaje de éxito
-//
-// preventDefault() → evita que el formulario recargue la página
-// El comportamiento por defecto de un form es recargar la página
-// al hacer submit. Con esto lo controlamos nosotros con JS.
-// ============================================================
 const formulario = document.querySelector('.formulario');
 
 if (formulario) {
@@ -76,24 +40,18 @@ if (formulario) {
 
     let valido = true;
 
-    // Recorremos todos los campos requeridos
     formulario.querySelectorAll('[required]').forEach(campo => {
       if (!campo.value.trim()) {
-        // Campo vacío → borde rojo
         campo.style.borderColor = '#e63946';
         valido = false;
 
-        // Quitamos el rojo cuando el usuario empieza a escribir
         campo.addEventListener('input', () => {
           campo.style.borderColor = '';
-        }, { once: true }); // once: true → solo se ejecuta una vez
+        }, { once: true });
       }
     });
 
     if (valido) {
-      // Todo correcto → mostramos mensaje de éxito
-      // En un proyecto real aquí harías un fetch() a tu backend Node.js
-      // para enviar el email. Por ahora simulamos el éxito.
       formulario.innerHTML = `
         <div style="
           grid-column: 1 / -1;
@@ -120,16 +78,6 @@ if (formulario) {
 }
 
 
-// ============================================================
-// 4. HIGHLIGHT enlace activo en la navegación
-//
-// Detectamos en qué página estamos comparando la URL actual
-// con el href de cada enlace del menú.
-// Así no tenemos que añadir la clase "activo" manualmente
-// en cada página (aunque ya lo hicimos, esto es una capa extra).
-//
-// window.location.pathname → la ruta actual, ej: "/servicios.html"
-// ============================================================
 const rutaActual = window.location.pathname.split('/').pop();
 
 document.querySelectorAll('.nav-links a').forEach(enlace => {
